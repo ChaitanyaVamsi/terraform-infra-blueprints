@@ -1,5 +1,5 @@
 resource "aws_route53_record" "sample" {
-  for_each = aws_instance.web_server
+  for_each = aws_instance.web_server // here we are iterating the output of instace it gives us a single key
   # count = length(var.instances)
   zone_id = var.zone_id
   name = "${each.key}.${var.domain_name}"
