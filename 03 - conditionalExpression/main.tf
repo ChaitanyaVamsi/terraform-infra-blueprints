@@ -3,6 +3,7 @@ resource "aws_instance" "web_server" {
   instance_type = var.env == "dev" ? "t3.micro" : "t3.small"
 
   tags = {
+    Name = "web-server"
     env = var.env
   }
 }
