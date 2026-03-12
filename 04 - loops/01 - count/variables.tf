@@ -14,3 +14,12 @@ variable "env" {
 variable "instances" {
   default = ["mongo","redis","sql"]
 }
+
+
+variable "zone_id" {
+  default = "Z103025810WRVMV3MH616"
+}
+
+variable "domain_name" {
+  default = "cloudops.store"
+}
