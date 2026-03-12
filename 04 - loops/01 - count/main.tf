@@ -4,7 +4,7 @@ resource "aws_instance" "web_server" {
   instance_type = var.env == "dev" ? "t3.micro" : "t3.small"
 
   tags = {
-    Name = count.index[var.instances]
+    Name = var.instances[count.index]
     env = var.env
   }
 }
