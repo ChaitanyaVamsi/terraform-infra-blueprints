@@ -6,3 +6,6 @@ resource "aws_instance" "web_server" {
   })
 
 }
+
+#terraform init -backend-config=dev/backend.tf -reconfigure
+#terraform plan -var-file=dev/dev_var.tfvars
