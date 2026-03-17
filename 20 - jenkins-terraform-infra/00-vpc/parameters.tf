@@ -10,7 +10,19 @@ resource "aws_ssm_parameter" "ssm_public_subnet_ids" {
   type = "StringList"
   value = join ("," , module.vpc.pubic_subnet_ids)
 }
-
+# We get public subnet IDs from the VPC module as a LIST
+# Example: ["subnet-aaa", "subnet-bbb"]
+#
+# AWS SSM Parameter Store cannot store lists directly,
+# it only accepts STRING values.
+#
+# So we use join(",") to convert the list into a single string:
+# ["subnet-aaa", "subnet-bbb"] → "subnet-aaa,subnet-bbb"
+#
+# We store it as type "StringList", which is just a comma-separated string.
+#
+# Later, when reading this value, we can use split(",") to convert
+# it back into a list.
 resource "aws_ssm_parameter" "ssm_private_subnet_ids" {
   name = "/${var.project_name}/${var.environment}/private_subnet_ids"
   type = "StringList"
